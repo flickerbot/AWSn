@@ -1,0 +1,29 @@
+--vpc -virtual private cloud
+
+172.31.0.0/16 default vpc automatically created in every region az resilent
+can be created via VPC section 
+deleting default vpc not a god practice even if we are not using it
+
+
+
+--snapshots
+
+capturing the data so taht if instance fails or gets deleted data can be recovered
+creating snapshot > from storage id >snapshot create 
+
+creating image from snapshot to recover lost data on ec2 ,if the security key is lost ec2 can be 
+used to host new instance from custom AMI
+
+
+-- instance protection 
+
+Used to provide a layer so that instance can't be deleted by mistake 
+
+
+--automated snapshots
+> cloud watch method defining rules 
+> lifecycle manager min 1hr
+
+-- elastic IP address
+custom ip address that will nt change even if we stop the instance 
+used when we want to link the ec2 to like some app hardcoding when we can't change ip again n again 

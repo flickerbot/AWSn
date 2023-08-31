@@ -1,0 +1,9 @@
+Metadata endpoint:
+
+The 169.254.169.254 IP address is a “magic” IP in the cloud world, in AWS it used to retrieve user data and instance metadata specific to a instance. It can only be accessed locally from instances and available without encryption and authentication.
+
+accesssed via a local instance showing info regarding that only 
+
+cmd
+ 
+curl https://169.254.169.254/latest/

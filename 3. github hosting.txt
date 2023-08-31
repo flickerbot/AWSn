@@ -1,0 +1,17 @@
+hosting git website 
+
+--httpd installation
+
+yum install git 
+-- installing git 
+
+cd /var/www/html
+git clone git@github<username><reponame>.git
+
+--this will not work because we havent authenticated ssh keys with out git yet 
+--so first we will generate ssh keys and link them to git
+
+-- https://www.inmotionhosting.com/support/server/ssh/how-to-add-ssh-keys-to-your-github-account/
+follow this tutorial for that 
+
+after the coonnection of ssh keys the git clone command will work and the site can be hosted simply 

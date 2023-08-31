@@ -1,0 +1,31 @@
+hosting a webpage via github or some website by downloading the code
+
+
+> host ec2 and install httpd
+-- same steps as excercise1 hosting site on aws upto httpd installation
+
+commands
+mkdir temp
+cd temp 
+-- making a temp directory to download the website code
+
+
+wget < site url >
+-- wget https://github.com/flickerbot/portfoilio/archive/refs/heads/main.zip>
+-- wget any other code in zipped file 
+
+unzip main.zip 
+-- unzipping the downloaded code
+
+ls -lrt 
+-- listing the content in the folder 
+-- here we will have to folder one the downloaded zipped one and another the unzipped one 
+-- our files are in unzipped one
+
+cd <downloaded-files-folder>
+mv * /var/www/html
+--moving our files to html folder
+
+ls -lrt 
+-- to check if files are moved 
+-- now our files are moved to httpd html folder we can access our site using the public ip !! 

@@ -1,0 +1,42 @@
+-- hosting a personal website on ec2 
+
+> create Ec2 instance
+-- in security group allow http,https from anywhere as we will be accsessing the site from our browser 
+
+>launch ec2
+-- we will be hosting the site on http server 
+--httpd is the Apache HyperText Transfer Protocol (HTTP) server program. It lets us to host our webpage on apache server 
+
+commands 
+sudo su
+ -- changing to root user 
+
+systemctl get httpd 
+--Systemctl is a command-line tool that allows for the management and monitoring of the systemd system and service manager 
+-- get httpd to install httpd service on the server
+
+cd /var/www/html
+--changing the directory to html , all the files for hosting will be stored here
+
+nano index.html
+--editing the index file for hosting the page and saving it 
+
+<html>
+<body>
+hi this is rishi histing my page on ec2 
+</body>
+</html>
+
+
+systemctl enable httpd
+-- to enable the httpd service
+
+systemctl start httpd
+-- to start the httpd service
+
+systemctl status httpd
+-- checking the status active or inactive 
+
+
+now we can access the site by copying and pasting the public IPv4 in our browser 
+note: by directly opening the site via redirect option the site may not load so open it via copy and pasting !!

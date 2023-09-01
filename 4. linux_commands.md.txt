@@ -1,0 +1,49 @@
+### pwd 
+> print current working directory
+
+### ls 
+> list files
+ls -a - list hidden files also
+ls -l - give more detail abt files creation owner etc.
+ls -r - list all the files recursively [ folder inside folder everything ]
+
+### open <name>
+opening a file with desired name 
+open . will open the current directory in file system
+ 
+### cd <name>
+change directory to the name 
+cd .. - changes to previous directory
+cd <path> changes to desired path 
+
+### cat 
+list all the content inside the file 
+
+> cat > hello                 
+> my name is rishi
+will create a file named hello with content my name is rishi
+
+### man <command>
+will give info abt thr passed command
+
+### mkdir 
+make directory 
+> mkdir -p rishi/hello -- making 2 folder [one within another]
+
+### touch
+making files 
+
+### cp
+copy files 
+
+### mv
+moving the file
+
+### rm 
+remove the file 
+> rmdir to remove directory ( must be emPty )
+> rm -R (directory) will be delteing all dir and file
+
+### sudo - superuser do
+execute command as administrator
+

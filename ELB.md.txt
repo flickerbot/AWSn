@@ -1,0 +1,26 @@
+Elastic Load balancer
+
+
+## Load balancing is the method of distributing network traffic equally across a pool of resources that support an application
+
+
+> Load balancing is like the work done by a manager in a restaurant. Consider a restaurant with five waiters. If customers were allowed to choose their waiters, one or two waiters could be
+> overloaded with work while the others are idle. To avoid this scenario, the restaurant manager assigns customers to the specific waiters who are best suited to serve them.
+
+
+## classic load balancer 
+not used kinda outdated sends traffic directly to ec2 instance 
+
+## application load balancer 
+An Application Load Balancer makes routing decisions at the application layer (HTTP/HTTPS), supports path-based routing, and can route requests to one or more ports on each container instance in your cluster
+we can specify path and queries to redirect to a particular target group 
+
+> Create target group
+> goto load balancer > listner 
+> View edit rule 
+> goAdd rules and specify the route 
+
+
+
+## network load balancer 
+based on network layer used fr redirecting to ports etc ..

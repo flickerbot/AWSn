@@ -1,7 +1,6 @@
-S3 simple storage bucket 
-global policy 
+S3 simple storage bucket -it is a global policy 
 
-we create bucket that is region specific in nature
+we create bucket in S# - that is region specific in nature
 
 ## launching a bucket
 > Search for s3 
@@ -70,13 +69,22 @@ like awsbuck666 is bucket name and after that * specifies all the objects in buc
 
 
 
-# note :  
+# note :
+  
 > we can also access our site by turning on static hosting which gives us a url to access the site
 > we can use this option because as compared to object url, using the static website hosting URL provides a more polished and user-friendly experience. It simplifies URL structure, 
 > handles error pages gracefully, and can be integrated more effectively with CDNs and other web services. It's a best practice for hosting static websites on AWS S3.
 
 
 
-
 # hosting an isntance using s3 
 https://medium.com/@KerrySheldon/ec2-exercise-1-3-host-a-static-webpage-with-content-from-s3-4496f1e642c2
+
+
+
+![Screenshot (15)](https://github.com/flickerbot/AWSn/assets/78339973/f0b40feb-e743-46fa-99f4-cba6a85281b2)
+
+
+![Screenshot (12)](https://github.com/flickerbot/AWSn/assets/78339973/bf97e768-d691-4557-b5d4-f98fdf4b04fe)
+
+

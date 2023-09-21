@@ -36,6 +36,7 @@
 using this our data has been dumped to rds 
 
 
+
 ## cmnd3
 
 > mysql -h <replace-rds-end-point-here> -P 3306 -u rdsuser -p
@@ -52,6 +53,14 @@ connecting to the rds database
 
 
 
+![Screenshot (53)](https://github.com/flickerbot/AWSn/assets/78339973/34acc584-1db3-41fb-b273-2304aa77ba10)
+ 
+ 
+ 
+# AWS multi AZ rds concept
+![Screenshot (55)](https://github.com/flickerbot/AWSn/assets/78339973/fb5d902a-7b77-441e-9788-34819da5ad06)
+![Screenshot (57)](https://github.com/flickerbot/AWSn/assets/78339973/8db3bf60-dd6a-4f1d-9a49-4284bfc6203b)
+![Screenshot (56)](https://github.com/flickerbot/AWSn/assets/78339973/b950a469-a6f9-4380-ae8b-226220ab3d39)
 
 
 

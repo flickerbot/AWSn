@@ -1,0 +1,36 @@
+Amazon RDS DB instances
+
+A DB instance is an isolated database environment running in the cloud. It is the basic building block of Amazon RDS. A DB instance can contain multiple user-created databases, and can be accessed using the same client tools and applications you might use to access a standalone database instance.
+
+> You can have up to 40 Amazon RDS DB instances if wanna request for more a form is present or support contact 
+
+
+#creating rds database 
+
+rds is based on avaliability zone so if one AZ fails the database will go down , before creating database we specify in which subnet we want our database to be accessed which is asked while creating the database 
+
+### steps 
+> create database 
+> engine optimization -- select the desired databse like msql or mariaDB etc
+> template -- production or dev or free tier 
+> name and master password 
+> instance config -- type of instance we want 
+> storage free upto 20 gb 
+> vpc 
+> authentication and some other basic settings 
+> create 
+
+
+
+
+### database features 
+> connectivity -- endpoints ,ports,vpc etc...
+> monitering -- basic monitering like cpu,diskusage etc...
+> logs 
+> configuration -- instance type etc ..
+
+
+
+
+
+## HOSting mariaDB on EC2 instance 

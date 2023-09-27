@@ -1,0 +1,208 @@
+#CLOUD-Commit
+
+CodeCommit is a secure, highly scalable, managed source control service that hosts private Git repositories. CodeCommit eliminates the need for you to manage your own source control system or worry about scaling its infrastructure. You can use CodeCommit to store anything from code to binaries. It supports the standard functionality of Git, so it works seamlessly with your existing Git-based tools.
+
+> its just like aws git-huB service !! 
+
+
+
+Setting up for AWS CodeCommit
+
+1. make repository on cloud commit 
+2. grant AWSCodeCommitPowerUser policy to the user iam to access cloud commit attach policy directly 
+
+3. Create Git credentials for HTTPS connections to CodeCommit
+
+> In the IAM console, in the navigation pane, choose Users, and from the list of users, choose your IAM user.
+> On the user details page, choose the Security Credentials tab, and in HTTPS Git credentials for AWS CodeCommit, choose Generate
+
+4. goto cloud commit -repository clone url and coy the https url 
+
+5. open cmd type 
+> git clone copied url 
+> git clone < https://git-codecommit.us-east-1.amazonaws.com/v1/repos/my-repo >
+
+6. after this a menu will open to ask credentials ,enter credentials obtained in step 3 
+5. Repo will be clone rest all commands work similar to git :)
+
+
+
+
+#Cloud-Build
+
+AWS CodeBuild is a fully managed build service in the cloud. CodeBuild compiles your source code, runs unit tests, and produces artifacts that are ready to deploy. CodeBuild eliminates the need to provision, manage, and scale your own build servers.
+
+>A buildspec is a collection of build commands and related settings, in YAML format, that CodeBuild uses to run a build. Without a build spec, CodeBuild cannot successfully convert your 
+> build input into build output or locate the build output artifact in the build environment to upload to your output bucket.
+
+
+In this the main building block is buildspec.yml file it will define the build flow of our application 
+
+in below Example we try to build a buitspec file that qill instal nginx file on our instance and will copy index.html to html folder , in last we are using artifacts to put all the content into zipped file 
+
+
+
+```
+
+version: 0.2
+ 
+phases : 
+  install :
+     commands :
+      - echo installing nginx 
+      - sudo apt-get update 
+      - sudo apt-get install nginx -y
+
+  build :
+     commands :
+     - echo building app 
+     - cp index.html /var/www/html 
+
+  post_build :
+    commands :
+    - echo build complete
+
+artifacts :
+  files :
+    - '**/*'
+
+
+```
+
+
+
+version represents the version of the build spec standard being used. This build spec declaration uses the latest version, 0.2.
+
+phases represents the build phases during which you can instruct CodeBuild to run commands. These build phases are listed here as install, pre_build, build, and post_build. You cannot change the spelling of these build phase names, and you cannot create more build phase names. For completeness, a few echo commands are placed in each build phase in this example. When you view detailed build information later in this tutorial, the output of these echo commands can help you better understand how CodeBuild runs commands and in which order. (Although all build phases are included in this example, you are not required to include a build phase if you do not plan to run any commands during that phase.) For each build phase, CodeBuild runs each specified command, one at a time, in the order listed, from beginning to end.
+
+artifacts represents the set of build output artifacts that CodeBuild uploads to the output bucket. 
+
+
+
+
+now we will push our builtspec file along with a index.html file to code commit and the opwn code built window
+
+create project
+source ( can be code commit or github or some other )
+environment leave managed and choose ubuntu latest ver 
+in last choose s3 and give the bucket name where we need to store artifact file 
+
+create built 
+
+
+> a built will be created at last if evrything is right we can move to next stage 
+
+
+
+# codeDeploy
+> this one is a naughty bitch :>
+
+CodeDeploy is a deployment service that automates application deployments to Amazon EC2 instances, on-premises instances, serverless Lambda functions, or Amazon ECS services.CodeDeploy can deploy application content that runs on a server and is stored in Amazon S3 buckets, GitHub repositories, or Bitbucket repositories. CodeDeploy can also deploy a serverless Lambda function. You do not need to make changes to your existing code before you can use CodeDeploy.
+
+
+
+In this example we will be interacting with clouddeploy ,ec2 and s3 so we need an IAM role with dedicated policies 
+
+- AmazonEC2FullAccess	 
+- AmazonS3FullAccess	 
+- AWSCodeDeployFullAccess
+
+> create codedeploy in codedeploy menu create application -- deployment group -- deployment
+> choose s3 bucket and select the build we created in the codebuild menu then specify the uri here 
+
+
+## codedeploy agent needed to be installed on ec2 
+
+
+```
+sudo apt-get update 
+sudo apt-get install ruby-full ruby-webrick wget -y 
+cd /tmp 
+wget https://aws-codedeploy-us-east-1.s3.us-east-1.amazonaws.com/releases/codedeploy-agent_1.3.2-1902_all.deb 
+mkdir codedeploy-agent_1.3.2-1902_ubuntu22 
+dpkg-deb -R codedeploy-agent_1.3.2-1902_all.deb codedeploy-agent_1.3.2-1902_ubuntu22 
+sed 's/Depends:.*/Depends:ruby3.0/' -i ./codedeploy-agent_1.3.2-1902_ubuntu22/DEBIAN/control 
+dpkg-deb -b codedeploy-agent_1.3.2-1902_ubuntu22/ 
+sudo dpkg -i codedeploy-agent_1.3.2-1902_ubuntu22.deb 
+systemctl list-units --type=service | grep codedeploy 
+sudo service codedeploy-agent status
+
+```
+
+
+run these commands on ec2 to install clouddeplyagent and start it 
+
+also we need to create appspec file that will be used during the deployment phase to specify how your application should be deployed, including copying files to the target environment and running scripts.
+
+
+
+``` 
+appspec.yml
+
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html
+hooks:
+  AfterInstall:
+    - location: scripts/install_nginx.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_nginx.sh
+      timeout: 300
+      runas: root
+
+
+```
+
+
+
+now we will be running two scripts on ec2 
+> start_nginx
+
+```
+
+#!/usr/bin/bash
+
+sudo systemctl start nginx 
+
+
+```
+
+
+
+> install_nginx
+
+```
+
+#!/usr/bin/bash
+
+
+sudo apt-get update
+sudo apt-get install -y nginx
+
+
+
+```
+
+now we wiil deploy the built and run it 
+The folder should contain the files like this 
+
+
+
+
+
+#CodePipline 
+
+
+WIll integrate all the above three and will be deploying them in pipeline manner 
+on creating simply choose the above we created very easy no error ( as compared to codeDeploy its a piece of cake <> ) 
+
+
+
+
+link to be followd 
+https://youtu.be/IUF-pfbYGvg?si=90bLbLBXPhpkmULa
+https://www.youtube.com/live/xkLQ6xzZZhU?si=UijLlC93sMRWIBFT

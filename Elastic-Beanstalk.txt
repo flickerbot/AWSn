@@ -1,0 +1,32 @@
+Elastic Beanstalk
+
+Elastic Beanstalk lets us to deploy and manage applications in the AWS Cloud without having to learn about the infrastructure that runs those applications. Elastic Beanstalk reduces management complexity without restricting choice or control. You simply upload your application, and Elastic Beanstalk automatically handles the details of capacity provisioning, load balancing, scaling, and application health monitoring.
+
+
+THere is no additional charge for AWS Elastic Beanstalk. You pay for AWS resources (e.g. EC2 instances or S3 buckets) you create to store and run your application. You only pay for what you use, as you use it; there are no minimum fees and no upfront commitments
+
+
+Create application 
+
+step 1 : create application 
+i.e web server based or worker 
+An application in Elastic Beanstalk refers to the code and resources that you want to deploy and run on AWS infrastructure. It could be a web application, a REST API, or any other type of application .
+
+STep 2 : define environment name :  An environment in Elastic Beanstalk represents a set of AWS resources that run your application. It includes an Amazon EC2 instance (for single-instance environments) or a group of instances (for load-balanced environments), a database (if needed), and other resources necessary to run your application. Each environment is a fully isolated and self-contained instance of your application. Environments can have different configurations and settings, such as the type of EC2 instances, the number of instances, scaling policies, security settings, and more. You can have multiple environments for the same application, each serving a different purpose (e.g., development, testing, production).
+
+
+
+
+step 3 : attach iam role with these services
+ 
+AWSElasticBeanstalkWebTier
+
+AWSElasticBeanstalkWorkerTier
+
+AWSElasticBeanstalkMulticontainerDocker
+
+create new if not avaliable already 
+
+
+
+step 4 rest services can be left as default click on create all things like ec2,eip,cloud formation will be done automatically by beanstalk and we can focus on our code , version can be changed by selectng the enviroment and choosing upload and deploy where we can upload our new code or application 

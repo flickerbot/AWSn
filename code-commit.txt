@@ -1,0 +1,32 @@
+#CLOUD-Commit
+
+CodeCommit is a secure, highly scalable, managed source control service that hosts private Git repositories. CodeCommit eliminates the need for you to manage your own source control system or worry about scaling its infrastructure. You can use CodeCommit to store anything from code to binaries. It supports the standard functionality of Git, so it works seamlessly with your existing Git-based tools.
+
+> its just like aws git-huB service !! 
+
+
+
+Setting up for AWS CodeCommit
+
+1. make repository on cloud commit 
+2. grant AWSCodeCommitPowerUser policy to the user iam to access cloud commit attach policy directly 
+
+3. Create Git credentials for HTTPS connections to CodeCommit
+
+> In the IAM console, in the navigation pane, choose Users, and from the list of users, choose your IAM user.
+> On the user details page, choose the Security Credentials tab, and in HTTPS Git credentials for AWS CodeCommit, choose Generate
+
+4. goto cloud commit -repository clone url and coy the https url 
+
+5. open cmd type 
+> git clone copied url 
+> git clone < https://git-codecommit.us-east-1.amazonaws.com/v1/repos/my-repo >
+
+6. after this a menu will open to ask credentials ,enter credentials obtained in step 3 
+5. Repo will be clone rest all commands work similar to git :)
+
+
+
+
+#Cloud-Build
+

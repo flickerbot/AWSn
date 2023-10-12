@@ -4,8 +4,7 @@ install cloudwatchlogs agent
 
 > curl https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/AgentDependencies.tar.gz -O
 
->
-tar xvf AgentDependencies.tar.gz -C /tmp/ 	
+>tar xvf AgentDependencies.tar.gz -C /tmp/ 	
 
 the next command requires python to be installed so install python
 > apt-get install python
